@@ -2,9 +2,9 @@
 from scapy.all import sniff, ARP
 import sys
 from signal import SIGINT, signal
-#data###################################################################
+
 machines = dict()
-#functions##############################################################
+
 def paranoid(pckt):
 	if( pckt[ARP].hwsrc in machines ):
 		if(	machines[pckt[ARP].hwsrc] == pckt[ARP].psrc	):
@@ -36,7 +36,7 @@ def sig_handler(signal_number, interrupted_stack_frame):
 	print "\nSIGINT received....."
 	sys.exit(0)
 			
-#EXECUTION##############################################################		
+		
 if(len(sys.argv) < 2):
 	my_iface = "wlan0"			 
 else:
